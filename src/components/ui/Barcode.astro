@@ -1,0 +1,36 @@
+---
+interface Props {
+  serial: string;
+  class?: string;
+}
+
+const { serial, class: className } = Astro.props;
+const bars: { x: number; width: number; height: number }[] = [];
+let seed = 7;
+
+const random = () => {
+  seed = (seed * 9301 + 49297) % 233280;
+  return seed / 233280;
+};
+
+let x = 0;
+for (let index = 0; index < 52; index += 1) {
+  const width = random() > 0.58 ? 2 : 1;
+  const height = index % 9 === 0 ? 30 : 24;
+  bars.push({ x, width, height });
+  x += width + (random() > 0.3 ? 1 : 2);
+}
+---
+
+<svg
+  class:list={['footer__barcode', className]}
+  viewBox={`0 0 ${x} 34`}
+  preserveAspectRatio="none"
+  aria-hidden="true"
+  focusable="false"
+  data-serial={serial}
+>
+  {bars.map((bar) => (
+    <rect x={bar.x} y={0} width={bar.width} height={bar.height} fill="currentColor" />
+  ))}
+</svg>

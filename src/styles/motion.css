@@ -1,0 +1,96 @@
+/* Progressive reveal: content is visible without JS. The script adds
+   `reveal-ready` only after it has successfully observed the elements. */
+[data-reveal] {
+  transition:
+    opacity var(--dur-reveal) var(--ease-reveal),
+    transform var(--dur-reveal) var(--ease-reveal);
+}
+
+html.js.reveal-ready [data-reveal]:not(.is-revealed) {
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+[data-reveal='fade'] {
+  transform: none;
+}
+
+html.js.reveal-ready [data-reveal='fade']:not(.is-revealed) {
+  transform: none;
+}
+
+/* Sigil canvas */
+.sigil {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: var(--surface-2);
+}
+
+.sigil canvas,
+.sigil__fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.sigil canvas {
+  z-index: 1;
+}
+
+.sigil__fallback {
+  z-index: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 62% 36%, rgba(242, 242, 240, 0.05), transparent 34%),
+    repeating-linear-gradient(0deg, transparent 0 15px, rgba(242, 242, 240, 0.03) 15px 16px),
+    var(--surface-2);
+}
+
+.sigil__fallback img {
+  width: 68%;
+  height: auto;
+  opacity: 0.9;
+}
+
+.sigil__scan {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(10, 10, 11, 0.22) 3px 4px);
+  mix-blend-mode: multiply;
+  opacity: 0.45;
+}
+
+.sigil__vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 42%, rgba(10, 10, 11, 0.45));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  [data-reveal],
+  html.js.reveal-ready [data-reveal]:not(.is-revealed) {
+    opacity: 1;
+    transform: none;
+  }
+}

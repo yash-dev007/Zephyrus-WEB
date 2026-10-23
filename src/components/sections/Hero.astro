@@ -1,0 +1,101 @@
+---
+import SigilCanvas from '@/components/motion/SigilCanvas';
+import Barcode from '@/components/ui/Barcode.astro';
+import EchoArcs from '@/components/ui/EchoArcs.astro';
+import { links, site } from '@/data/site';
+---
+
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="shell hero__grid">
+    <div class="hero__eyebrow">
+      <div class="hero__eyebrow-main">
+        <span>{site.name} team</span>
+        <span>Local-first AI harness</span>
+        <span>v{site.version}</span>
+        <span>{site.license}</span>
+      </div>
+      <span class="annotation">Edition 2026 / :{site.port}</span>
+    </div>
+
+    <div class="hero__lockup" aria-hidden="true">
+      <span class="hero__lockup-kicker">The wyrm in the machine</span>
+      <div class="hero__lockup-row">
+        <EchoArcs side="left" />
+        <span class="hero__wordmark display">Zephyrus</span>
+        <EchoArcs side="right" />
+        <span class="hero__est">Est. 2026</span>
+      </div>
+      <span class="hero__lockup-sub">Local-first AI harness</span>
+    </div>
+
+    <h1 class="h1 hero__title" id="hero-title">
+      <span>Your models.</span>
+      <span>Your machine.</span>
+      <span>Your hoard.</span>
+    </h1>
+
+    <div class="hero__sigil">
+      <div class="hero__sigil-head">
+        <span>The wyrm</span>
+        <span>Sigil 001</span>
+      </div>
+      <div class="hero__sigil-disc">
+        <SigilCanvas client:load />
+      </div>
+      <div class="hero__sigil-foot">
+        <span>ASCII field / 36 × 45</span>
+        <span>Canvas 2D</span>
+      </div>
+      <p class="sr-only">
+        A field of monospaced glyphs resolves into a sphere, then into the coiled dragon mark used
+        by Zephyrus.
+      </p>
+    </div>
+
+    <div class="hero__copy">
+      <p class="lead">
+        Zephyrus is a self-hosted AI harness for OpenAI-compatible models. Agent loops, persistent
+        memory, RAG, MCP bridges, and local serving behind one FastAPI server — with your data under{' '}
+        <code>data/</code>, not someone else's account.
+      </p>
+    </div>
+
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="#rite">
+        Install
+      </a>
+      <a class="btn" href={links.github} rel="noopener noreferrer">
+        Source{' '}
+        <span class="btn__glyph" aria-hidden="true">
+          ↗
+        </span>
+      </a>
+    </div>
+
+    <p class="hero__micro">
+      <span>Docker</span>
+      <span>Python 3.11+</span>
+      <span>{site.license}</span>
+    </p>
+
+    <div class="hero__rail" aria-label="System status">
+      <span class="hero__rail-item">
+        <span class="status-dot" aria-hidden="true"></span>
+        <b>app.py</b> :{site.port}
+      </span>
+      <span class="hero__rail-item">
+        <b>data/</b> local
+      </span>
+      <span class="hero__rail-item">
+        <b>SSE</b> stream
+      </span>
+      <span class="hero__rail-item">
+        <b>Auth</b> on
+      </span>
+      <span class="hero__rail-item hero__rail-barcode">
+        <Barcode serial={`ZYR-${site.version}`} />
+        <span>ZYR-{site.version}</span>
+      </span>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+---
+import InstallTabs from '@/components/forms/InstallTabs';
+import SectionHeader from '@/components/ui/SectionHeader.astro';
+---
+
+<section class="section" id="rite" aria-labelledby="rite-title" data-nav-section="rite">
+  <div class="shell">
+    <SectionHeader
+      index="06"
+      label="The rite"
+      title="Four commands to a local console."
+      titleId="rite-title"
+      lead="Docker is the supported path. Native Linux, macOS, and Windows installs are documented and tested separately. Requires Docker, or Python 3.11+."
+      meta="Docker / Python 3.11+ / :7000"
+    />
+
+    <div class="rite__grid">
+      <div class="rite__main">
+        <InstallTabs client:visible />
+      </div>
+    </div>
+  </div>
+</section>

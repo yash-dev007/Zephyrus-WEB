@@ -1,0 +1,16 @@
+---
+interface Props {
+  variant?: 'inset' | 'bleed' | 'cross';
+  class?: string;
+}
+
+const { variant = 'inset', class: className } = Astro.props;
+---
+
+{variant === 'bleed' ? (
+  <hr class:list={['rule-bleed', className]} aria-hidden="true" />
+) : variant === 'cross' ? (
+  <div class:list={['hairline-cross', className]} aria-hidden="true" />
+) : (
+  <hr class:list={['rule-inset', className]} aria-hidden="true" />
+)}

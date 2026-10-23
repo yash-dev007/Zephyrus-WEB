@@ -1,0 +1,157 @@
+---
+import Base from '@/layouts/Base.astro';
+import Stamp from '@/components/ui/Stamp.astro';
+import { links, site } from '@/data/site';
+---
+
+<Base
+  title="Colophon — Zephyrus"
+  description="Type, stack, image credits, accessibility, and license for the Zephyrus site."
+>
+  <header class="page-head">
+    <div class="shell page-head__shell">
+      <div class="poster-bar page-head__bar">
+        <span>Zephyrus / Colophon</span>
+        <span class="poster-bar__center">The machinery, on the record</span>
+        <span>Edition {site.edition}</span>
+      </div>
+      <p class="eyebrow page-head__eyebrow">Colophon / Edition {site.edition}</p>
+      <h1 class="h1 page-head__title">The machinery, on the record.</h1>
+      <p class="lead page-head__lede">
+        The site is built from the same principles as the product: static, local, legible, and
+        accountable. Here is what it is made of.
+      </p>
+    </div>
+  </header>
+
+  <div class="shell colophon">
+    <div class="poster-bar colophon__bar">
+      <span>Zephyrus / Record</span>
+      <span class="poster-bar__center">Stack / type / images</span>
+      <span>Folio C</span>
+    </div>
+    <div class="colophon__grid">
+      <section class="colophon__section colophon__section--narrow" id="type">
+        <h2 class="h3">Type</h2>
+        <p class="body-copy">
+          Display is <strong>Archivo Variable</strong>, set condensed and uppercase for the poster
+          scale. Headings, technical copy, labels, and body are{' '}
+          <strong>JetBrains Mono Variable</strong>. One pull quote uses{' '}
+          <strong>Instrument Serif</strong> italic.
+        </p>
+        <p class="body-copy">
+          All three are SIL Open Font License families, self-hosted and subset to the Latin glyphs
+          used here. No font is requested from a third party. The wordmark and dragon mark are
+          vectors traced from the supplied mark, not type.
+        </p>
+      </section>
+
+      <section class="colophon__section" id="stack">
+        <h2 class="h3">Stack</h2>
+        <table class="spec-table">
+          <tbody>
+            <tr>
+              <th scope="row">Framework</th>
+              <td>Astro 7.4.1, static output</td>
+            </tr>
+            <tr>
+              <th scope="row">Islands</th>
+              <td>React 19.3.1</td>
+            </tr>
+            <tr>
+              <th scope="row">Motion</th>
+              <td>Motion 14.5.0, with a reduced-motion path</td>
+            </tr>
+            <tr>
+              <th scope="row">Scroll</th>
+              <td>Lenis 1.3.27, wheel-only on desktop; native touch</td>
+            </tr>
+            <tr>
+              <th scope="row">Type system</th>
+              <td>Vanilla CSS layers and custom properties</td>
+            </tr>
+            <tr>
+              <th scope="row">Images</th>
+              <td>Sharp at build time; AVIF and WebP with fixed dimensions</td>
+            </tr>
+            <tr>
+              <th scope="row">OG image</th>
+              <td>Satori and resvg, generated at build</td>
+            </tr>
+            <tr>
+              <th scope="row">Tests</th>
+              <td>Vitest, Playwright, axe-core, Lighthouse CI</td>
+            </tr>
+            <tr>
+              <th scope="row">Deploy</th>
+              <td>Static assets; no application server</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="colophon__section" id="images">
+        <h2 class="h3">Images</h2>
+        <p class="body-copy">
+          The photographs were generated for this site, then cropped, desaturated, and graded for
+          the COLD BREATH direction. They are not product screenshots, and no generated image
+          carries UI, text, logos, or charts.
+        </p>
+        <p class="body-copy">
+          The stone relief is the only literal dragon scene. The mark, wordmark, stamp, barcode,
+          sigil, diagrams, and OG typography are all built in code. Source photography and
+          generation material stay out of the published site.
+        </p>
+        <p class="annotation">Image credit: generated and graded for Zephyrus, 2026.</p>
+      </section>
+
+      <section class="colophon__section colophon__section--narrow" id="accessibility">
+        <h2 class="h3">Accessibility</h2>
+        <p class="body-copy">
+          The target is WCAG 2.2 AA. The page is keyboard-operable, respects reduced motion and
+          reduced data, keeps a visible focus ring, and does not hide content behind hover-only
+          states. The sigil becomes a static mark when motion is reduced.
+        </p>
+        <p class="body-copy">
+          There are no cookies, no analytics, and no third-party requests at launch. If something
+          here is hard to use, the issue tracker is the right place to say so.
+        </p>
+      </section>
+
+      <section class="colophon__section colophon__section--narrow" id="edition">
+        <h2 class="h3">Edition</h2>
+        <p class="body-copy">
+          Site edition {site.edition}. Product stamp v{site.version}. The product and this site are
+          licensed {site.license}. The source for both is public.
+        </p>
+        <div class="colophon__rule" aria-hidden="true"></div>
+        <p class="smallprint">
+          Zephyrus is not affiliated with model providers. Provider names are trademarks of their
+          owners.
+        </p>
+        <p class="annotation">
+          <a href={links.license} rel="noopener noreferrer">
+            License ↗
+          </a>
+          <span aria-hidden="true"> · </span>
+          <a href={links.issues} rel="noopener noreferrer">
+            Report an issue ↗
+          </a>
+        </p>
+      </section>
+
+      <div class="colophon__section">
+        <div class="colophon__rule" aria-hidden="true"></div>
+        <div class="footer__bottom" style="margin-top: 24px;">
+          <a class="link-arrow" href="/">
+            Return to the lair{' '}
+            <span class="arrow" aria-hidden="true">
+              ←
+            </span>
+          </a>
+          <Stamp size={88} />
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>

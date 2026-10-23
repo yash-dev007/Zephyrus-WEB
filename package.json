@@ -1,0 +1,62 @@
+{
+  "name": "zephyrus-web",
+  "version": "1.0.1",
+  "private": true,
+  "type": "module",
+  "description": "The Zephyrus local-first AI harness website.",
+  "license": "AGPL-3.0-only",
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "packageManager": "pnpm@12.14.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check",
+    "lint": "eslint . && prettier --check .",
+    "lint:fix": "eslint . --fix && prettier --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "lhci": "lhci autorun",
+    "grain": "node scripts/generate-grain.mjs",
+    "deploy": "wrangler deploy",
+    "fonts": "node scripts/subset-fonts.mjs",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@astrojs/react": "7.1.1",
+    "@astrojs/sitemap": "3.7.4",
+    "@fontsource-variable/archivo": "5.3.0",
+    "@fontsource-variable/jetbrains-mono": "5.3.0",
+    "@fontsource/instrument-serif": "5.3.0",
+    "@resvg/resvg-js": "2.6.2",
+    "astro": "7.4.1",
+    "lenis": "1.3.27",
+    "motion": "14.5.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "satori": "0.63.2",
+    "sharp": "0.35.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@axe-core/playwright": "4.14.0",
+    "@lhci/cli": "0.15.1",
+    "@playwright/test": "1.64.1",
+    "@types/node": "26.6.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "10.13.0",
+    "eslint-plugin-astro": "3.2.1",
+    "prettier": "3.9.10",
+    "prettier-plugin-astro": "1.1.1",
+    "subset-font": "2.9.0",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.0",
+    "vitest": "5.0.5",
+    "wrangler": "4.151.3"
+  }
+}

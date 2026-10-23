@@ -1,0 +1,45 @@
+---
+import { site } from '@/data/site';
+
+interface Props {
+  index: string;
+  label: string;
+  title: string;
+  titleId: string;
+  eyebrow?: string;
+  lead?: string;
+  meta?: string;
+  wide?: boolean;
+}
+
+const { index, label, title, titleId, eyebrow, lead, meta, wide = false } = Astro.props;
+---
+
+<div class="section-head" data-reveal="fade">
+  <div class="poster-bar section-head__bar">
+    <span>Zephyrus / Folio {index}</span>
+    <span class="poster-bar__center">{label}</span>
+    <span>Cold breath / {site.edition}</span>
+  </div>
+
+  <div class="section-head__rail">
+    <span class="section-index" aria-hidden="true">
+      {index}
+    </span>
+    <span class="rail-label" aria-hidden="true">
+      {label}
+    </span>
+  </div>
+  <div class:list={['section-head__main', wide && 'section-head__main--wide']}>
+    <p class="eyebrow">{eyebrow ?? `${index} / ${label}`}</p>
+    <h2 class="h2" id={titleId}>
+      {title}
+    </h2>
+    {lead && <p class="lead section-lede">{lead}</p>}
+  </div>
+  {meta && (
+    <div class:list={['section-head__meta', wide && 'section-head__meta--wide']}>
+      <p class="annotation">{meta}</p>
+    </div>
+  )}
+</div>

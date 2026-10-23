@@ -1,0 +1,110 @@
+---
+import Barcode from '@/components/ui/Barcode.astro';
+import Stamp from '@/components/ui/Stamp.astro';
+import { links, site } from '@/data/site';
+
+const columns = [
+  {
+    title: 'Product',
+    links: [
+      { label: 'Install', href: '/#rite' },
+      { label: 'Setup', href: links.setup },
+      { label: 'Roadmap', href: links.roadmap },
+      { label: 'Branch model', href: links.branchModel },
+    ],
+  },
+  {
+    title: 'Source',
+    links: [
+      { label: 'GitHub', href: links.github },
+      { label: 'Issues', href: links.issues },
+      { label: 'Contributing', href: links.contributing },
+      { label: 'Releases', href: links.releases },
+    ],
+  },
+  {
+    title: 'Trust',
+    links: [
+      { label: 'Security', href: links.security },
+      { label: 'Threat model', href: links.threatModel },
+      { label: 'License: AGPL-3.0', href: links.license },
+    ],
+  },
+  {
+    title: 'Colophon',
+    links: [
+      { label: 'Stack', href: '/colophon#stack' },
+      { label: 'Type', href: '/colophon#type' },
+      { label: 'Image credits', href: '/colophon#images' },
+      { label: 'Edition 2026', href: '/colophon#edition' },
+    ],
+  },
+];
+---
+
+<footer class="footer">
+  <div class="shell footer__shell">
+    <div class="poster-bar footer__bar">
+      <span>Zephyrus / Colophon</span>
+      <span class="poster-bar__center">Cold breath</span>
+      <span>Edition {site.edition}</span>
+    </div>
+
+    <p class="footer__wordmark display" aria-hidden="true">
+      Zephyrus
+    </p>
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="footer__brand-mark" href="/" aria-label={`${site.name} home`}>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <p class="footer__tagline">
+          A local-first AI harness. Your models, your machine, your data — one directory, no hosted
+          account.
+        </p>
+      </div>
+
+      {columns.map((column) => (
+        <nav class="footer__col" aria-label={column.title}>
+          <p class="footer__heading">{column.title}</p>
+          <div class="footer__list">
+            {column.links.map((link) => (
+              <a
+                class="footer__link"
+                href={link.href}
+                rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              >
+                {link.label}
+                {link.href.startsWith('http') && (
+                  <span class="arrow" aria-hidden="true">
+                    {' '}
+                    ↗
+                  </span>
+                )}
+              </a>
+            ))}
+          </div>
+        </nav>
+      ))}
+    </div>
+
+    <div class="footer__bottom">
+      <div>
+        <Barcode serial={`ZYR-${site.version}`} />
+        <div class="footer__bottom-left">
+          <span>© 2026 Zephyrus</span>
+          <span>{site.license}</span>
+          <a class="footer__link" href={links.license} rel="noopener noreferrer">
+            License
+          </a>
+        </div>
+        <p class="footer__disclaimer">
+          AGPL-3.0: if you run a modified Zephyrus as a network service, you must offer its source.
+          Not affiliated with model providers. Provider names are trademarks of their owners.
+        </p>
+      </div>
+      <Stamp class="footer__stamp" size={104} />
+    </div>
+  </div>
+</footer>

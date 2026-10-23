@@ -1,0 +1,48 @@
+---
+import CopyButton from '@/components/forms/CopyButton';
+
+interface Props {
+  label?: string;
+  right?: string;
+  commands: readonly string[];
+  comment?: string;
+  copy?: boolean;
+  class?: string;
+}
+
+const {
+  label = 'Terminal',
+  right,
+  commands,
+  comment,
+  copy = false,
+  class: className,
+} = Astro.props;
+const plain = [...commands, ...(comment ? [comment] : [])].join('\n');
+---
+
+<div class:list={['terminal', className]}>
+  <div class="terminal__bar">
+    <span class="terminal__dots" aria-hidden="true">
+      <i></i>
+      <i></i>
+      <i></i>
+    </span>
+    <span>{label}</span>
+    {copy ? <CopyButton client:visible text={plain} label="Copy" /> : <span>{right ?? ''}</span>}
+  </div>
+  <div class="terminal__body">
+    <pre><code>{commands.map((command) => (
+          <span class="terminal__line">
+            <span class="prompt" aria-hidden="true">$ </span>
+            {command}
+            {'\n'}
+          </span>
+        ))}{comment && (
+          <span class="comment">
+            <span aria-hidden="true"># </span>
+            {comment}
+          </span>
+        )}</code></pre>
+  </div>
+</div>

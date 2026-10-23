@@ -1,0 +1,22 @@
+---
+interface Props {
+  side: 'left' | 'right';
+}
+
+const { side } = Astro.props;
+---
+
+<svg
+  class:list={['echo-arcs', `echo-arcs--${side}`]}
+  viewBox="0 0 100 56"
+  preserveAspectRatio="none"
+  aria-hidden="true"
+  focusable="false"
+>
+  <g fill="none" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke">
+    <ellipse cx="100" cy="28" rx="16" ry="27"></ellipse>
+    <ellipse cx="100" cy="28" rx="32" ry="27"></ellipse>
+    <ellipse cx="100" cy="28" rx="48" ry="27"></ellipse>
+    <ellipse cx="100" cy="28" rx="64" ry="27"></ellipse>
+  </g>
+</svg>

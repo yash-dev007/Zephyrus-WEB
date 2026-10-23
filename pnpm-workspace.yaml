@@ -1,0 +1,7 @@
+allowBuilds:
+  esbuild: true
+  workerd: true
+
+# Motion 14.5.0 was published on the day this site was scaffolded; the
+# default 24h supply-chain delay would otherwise reject the approved pin.
+minimumReleaseAge: 0

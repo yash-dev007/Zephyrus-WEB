@@ -1,0 +1,67 @@
+---
+import { Picture } from 'astro:assets';
+import Plate from '@/components/ui/Plate.astro';
+import SectionHeader from '@/components/ui/SectionHeader.astro';
+import { images } from '@/data/images';
+---
+
+<section class="section" id="lair" aria-labelledby="lair-title" data-reveal="fade">
+  <div class="shell">
+    <SectionHeader
+      index="01"
+      label="The lair"
+      title="Not a wrapper. A harness."
+      titleId="lair-title"
+      lead="Most AI tools rent you a chat box and keep the machinery. Zephyrus hands you the machinery: the agent loop, the memory store, the retrieval layer, the tool bridge, the server."
+      meta="Basement / inventory / one box"
+    />
+
+    <div class="lair__grid">
+      <div class="lair__copy">
+        <p class="body-copy">
+          One FastAPI server. One data directory. No hosted account in the path. Point it at the
+          model you already run, then keep everything it learns.
+        </p>
+
+        <blockquote class="quote lair__quote">
+          <span class="quote__rule" aria-hidden="true"></span>
+          “A dragon guards its hoard. Zephyrus keeps yours on your machine.”
+        </blockquote>
+        <p class="lair__caption">
+          <span>Named for the west wind.</span>
+          <span>Marked by the wyrm that guards the hoard.</span>
+        </p>
+
+        <a class="link-arrow lair__cta" href="#anatomy">
+          Read the anatomy{' '}
+          <span class="arrow" aria-hidden="true">
+            ↓
+          </span>
+        </a>
+      </div>
+
+      <Plate
+        class="lair__visual"
+        label="The lair"
+        meta="Plate 002"
+        footerLeft="4:5 / monochrome"
+        footerRight="One status light"
+        caption={images.lair.caption}
+        captionMeta={images.lair.credit}
+        bodyClass="lair__plate-body"
+      >
+        <Picture
+          src={images.lair.src}
+          alt={images.lair.alt}
+          formats={['avif', 'webp']}
+          widths={[480, 720, 960, 1122]}
+          sizes="(max-width: 1023px) 90vw, 40vw"
+          loading="lazy"
+          decoding="async"
+          class="plate__media"
+          style={`object-position: ${images.lair.position}`}
+        />
+      </Plate>
+    </div>
+  </div>
+</section>

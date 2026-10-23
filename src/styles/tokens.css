@@ -1,0 +1,65 @@
+:root {
+  color-scheme: dark;
+
+  /* Field and surfaces */
+  --bg: #070708;
+  --surface-1: #101013;
+  --surface-2: #151519;
+  --surface-3: #1c1c21;
+
+  /* Ink */
+  --text: #f2f2f0;
+  --text-soft: #c9c9c6;
+  --muted: #8e8e93;
+  --faint: #808086;
+
+  /* Rules */
+  --hairline: rgba(242, 242, 240, 0.14);
+  --hairline-soft: rgba(242, 242, 240, 0.08);
+  --hairline-strong: #6a6a70;
+
+  /* Signal: the reference is pure monochrome. */
+  --accent: #f2f2f0;
+  --accent-deep: #8e8e93;
+  --on-accent: #070708;
+  --scrim: rgba(7, 7, 8, 0.82);
+
+  /* Type */
+  --font-display: 'Archivo Variable', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:
+    'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas,
+    monospace;
+  --font-serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+
+  /* Grid */
+  --container: 1400px;
+  --margin: clamp(14px, 2.4vw, 32px);
+  --gutter: clamp(16px, 1.8vw, 28px);
+  --section-space: clamp(20px, 2.4vw, 36px);
+  --header-h: 56px;
+  --radius-card: 18px;
+  --card-pad: clamp(20px, 3vw, 44px);
+
+  /* Motion */
+  --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-state: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-hover: 120ms;
+  --dur-state: 220ms;
+  --dur-reveal: 520ms;
+
+  /* Layers */
+  --z-header: 60;
+  --z-grain: 90;
+  --z-skip: 110;
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --text-soft: #ececea;
+    --muted: #bcbcc1;
+    --faint: #a8a8ae;
+    --hairline: rgba(242, 242, 240, 0.32);
+    --hairline-soft: rgba(242, 242, 240, 0.18);
+    --hairline-strong: #9a9aa2;
+  }
+}

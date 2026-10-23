@@ -1,0 +1,19 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+.lighthouseci/
+coverage/
+test-results/
+playwright-report/
+
+.env
+.env.*
+!.env.example
+
+# Reference material and original generated images are never published.
+ref/
+
+*.log
+.DS_Store
+Thumbs.db

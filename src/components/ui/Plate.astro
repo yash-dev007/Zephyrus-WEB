@@ -1,0 +1,57 @@
+---
+interface Props {
+  label: string;
+  meta?: string;
+  footerLeft?: string;
+  footerRight?: string;
+  caption?: string;
+  captionMeta?: string;
+  class?: string;
+  bodyClass?: string;
+  frame?: boolean;
+}
+
+const {
+  label,
+  meta,
+  footerLeft,
+  footerRight,
+  caption,
+  captionMeta,
+  class: className,
+  bodyClass,
+  frame = true,
+} = Astro.props;
+---
+
+<figure class:list={['plate-figure', className]}>
+  <div class="plate">
+    {frame && (
+      <>
+        <span class="corner corner--tl" aria-hidden="true" />
+        <span class="corner corner--tr" aria-hidden="true" />
+        <span class="corner corner--bl" aria-hidden="true" />
+        <span class="corner corner--br" aria-hidden="true" />
+      </>
+    )}
+    <div class="plate__header">
+      <span>{label}</span>
+      {meta && <span>{meta}</span>}
+    </div>
+    <div class:list={['plate__body', bodyClass]}>
+      <slot />
+    </div>
+    {(footerLeft || footerRight) && (
+      <div class="plate__footer">
+        <span>{footerLeft}</span>
+        <span>{footerRight}</span>
+      </div>
+    )}
+  </div>
+  {(caption || captionMeta) && (
+    <figcaption class="plate__caption">
+      <span>{caption}</span>
+      {captionMeta && <span>{captionMeta}</span>}
+    </figcaption>
+  )}
+</figure>

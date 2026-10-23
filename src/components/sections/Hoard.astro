@@ -1,0 +1,113 @@
+---
+import { Picture } from 'astro:assets';
+import Plate from '@/components/ui/Plate.astro';
+import SectionHeader from '@/components/ui/SectionHeader.astro';
+import { images } from '@/data/images';
+import { dataAnnotations, dataTree } from '@/data/spine';
+import { links } from '@/data/site';
+---
+
+<section class="section" id="hoard" aria-labelledby="hoard-title" data-nav-section="hoard">
+  <div class="shell">
+    <SectionHeader
+      index="04"
+      label="The hoard"
+      title="Your data has an address. It's yours."
+      titleId="hoard-title"
+      lead="Every session, upload, vector, and setting is a file under data/. Back it up with cp. Move it with ZEPHYRUS_DATA_DIR. Keep it on the machine you chose."
+      meta="One directory / no hosted account"
+    />
+
+    <div class="hoard__grid">
+      <div class="hoard__copy">
+        <div class="data-tree" aria-label="Data directory layout">
+          {dataTree.map(([path, note]) => (
+            <div class="data-tree__row">
+              <span class="data-tree__path">{path}</span>
+              <span class="data-tree__note">{note}</span>
+            </div>
+          ))}
+        </div>
+
+        <p class="data-tree__annotations">
+          {dataAnnotations.map((annotation) => (
+            <span>{annotation}</span>
+          ))}
+        </p>
+
+        <div class="ward">
+          <div class="ward__head">
+            <p class="eyebrow">The ward</p>
+            <span class="annotation">On by default</span>
+          </div>
+          <h3 class="h3 ward__title">The ward is on by default.</h3>
+          <ul class="ward__list">
+            <li class="ward__item">
+              <b>Session cookies</b> plus <code>ody_</code> bearer tokens.
+            </li>
+            <li class="ward__item">
+              <b>Per-user privileges.</b> Dangerous tools are admin-gated.
+            </li>
+            <li class="ward__item">
+              <code>AUTH_ENABLED=true</code>, <code>LOCALHOST_BYPASS=false</code>,
+              <code>SECURE_COOKIES=true</code> behind HTTPS.
+            </li>
+            <li class="ward__item">
+              If ChromaDB, SearXNG, email, or a provider is down, the UI reports
+              <b>degraded state</b>; the server keeps serving.
+            </li>
+            <li class="ward__item">
+              <b>Self-host it like an admin console</b> — shell, uploads, model serving, email, API
+              tokens.
+            </li>
+          </ul>
+          <div class="ward__ctas">
+            <a class="btn btn--compact" href={links.threatModel} rel="noopener noreferrer">
+              Threat model{' '}
+              <span class="btn__glyph" aria-hidden="true">
+                ↗
+              </span>
+            </a>
+            <a class="btn btn--compact" href={links.security} rel="noopener noreferrer">
+              Security{' '}
+              <span class="btn__glyph" aria-hidden="true">
+                ↗
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <Plate
+        class="hoard__visual"
+        label="The ward"
+        meta="Relief / 004"
+        footerLeft="Stone / raking light"
+        footerRight="One literal relief"
+        caption={images.ward.caption}
+        captionMeta={images.ward.credit}
+        bodyClass="relief"
+      >
+        <Picture
+          src={images.ward.src}
+          alt={images.ward.alt}
+          formats={['avif', 'webp']}
+          widths={[400, 600, 800, 1086]}
+          sizes="(max-width: 1023px) 90vw, 40vw"
+          loading="lazy"
+          decoding="async"
+          class="relief__image"
+          style={`object-position: ${images.ward.position}`}
+        />
+        <span class="relief__label" aria-hidden="true">
+          STONE / 004
+        </span>
+        <span class="relief__grid" aria-hidden="true"></span>
+        <span class="relief__meta" aria-hidden="true">
+          <span>Coiled / weathered</span>
+          <span>Not a mascot</span>
+        </span>
+      </Plate>
+    </div>
+  </div>
+</section>

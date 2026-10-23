@@ -1,0 +1,60 @@
+---
+import SectionHeader from '@/components/ui/SectionHeader.astro';
+import { capabilities, capabilityGroups } from '@/data/capabilities';
+import { links } from '@/data/site';
+---
+
+<section class="section" id="anatomy" aria-labelledby="anatomy-title" data-nav-section="anatomy">
+  <div class="shell">
+    <SectionHeader
+      index="02"
+      label="The anatomy"
+      title="Twelve systems. One organism."
+      titleId="anatomy-title"
+      lead="A selected index of the harness. Everything below is wired through the same server and the same data directory; the full API surface lives in the repo."
+      meta="Selected feature areas / not the complete API"
+    />
+
+    <div class="ledger">
+      {capabilityGroups.map((group) => (
+        <div class="ledger__group">
+          <div class="ledger__group-label">
+            <span class="ledger__roman">{group.roman}</span>
+            <span class="ledger__group-name">{group.name}</span>
+          </div>
+          <div class="ledger__rows">
+            {capabilities
+              .filter((capability) => capability.group === group.roman)
+              .map((capability) => (
+                <details class="cap" data-ledger>
+                  <summary>
+                    <span class="cap__index" aria-hidden="true">
+                      {capability.index}
+                    </span>
+                    <span class="cap__name">{capability.name}</span>
+                    <span class="cap__spec">{capability.spec}</span>
+                    <span class="cap__toggle" aria-hidden="true" />
+                  </summary>
+                  <div class="cap__body">
+                    <div class="cap__body-inner">
+                      <p class="cap__body-content">{capability.detail}</p>
+                    </div>
+                  </div>
+                </details>
+              ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="anatomy__foot">
+      <p class="annotation">Selected feature areas, not the complete API.</p>
+      <a class="link-arrow" href={links.features} rel="noopener noreferrer">
+        Full feature map{' '}
+        <span class="arrow" aria-hidden="true">
+          ↗
+        </span>
+      </a>
+    </div>
+  </div>
+</section>

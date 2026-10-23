@@ -1,0 +1,16 @@
+dist/
+node_modules/
+.astro/
+.wrangler/
+.lighthouseci/
+coverage/
+playwright-report/
+test-results/
+ref/
+PLAN.md
+IMAGE_PROMPTS.md
+pnpm-lock.yaml
+public/brand/
+public/fonts/
+public/grain-*.webp
+src/assets/images/

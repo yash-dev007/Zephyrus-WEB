@@ -1,0 +1,64 @@
+---
+import { Picture } from 'astro:assets';
+import { images } from '@/data/images';
+import { links, site } from '@/data/site';
+---
+
+<section class="wind" id="wind" aria-labelledby="wind-title">
+  <div class="wind__media">
+    <Picture
+      src={images.wind.src}
+      alt={images.wind.alt}
+      formats={['avif', 'webp']}
+      widths={[640, 960, 1280, 1672]}
+      sizes="100vw"
+      loading="lazy"
+      decoding="async"
+      style={`object-position: ${images.wind.position}`}
+    />
+    <span class="wind__field" aria-hidden="true"></span>
+  </div>
+
+  <div class="poster-bar wind__bar">
+    <span>Zephyrus / The wind</span>
+    <span class="poster-bar__center">Run it before you trust it</span>
+    <span>Edition {site.edition}</span>
+  </div>
+
+  <div class="wind__content">
+    <div class="wind__band">
+      <div class="shell">
+        <div class="wind__band-inner">
+          <div class="wind__copy">
+            <p class="eyebrow wind__eyebrow">07 / The wind</p>
+            <h2 class="h2 wind__title" id="wind-title">
+              Run it before you trust it.
+            </h2>
+            <p class="lead wind__lead">
+              Clone the repo, start the stack, point it at a model you already run. If it doesn't
+              earn the disk space, remove it. No hosted account. No lock-in.
+            </p>
+          </div>
+          <div class="wind__actions">
+            <a class="btn btn--primary" href="#rite">
+              Install
+            </a>
+            <a class="btn" href={links.stars} rel="noopener noreferrer">
+              Star on GitHub{' '}
+              <span class="btn__glyph" aria-hidden="true">
+                ↗
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div class="wind__caption">
+          <span>{images.wind.caption}</span>
+          <span>
+            {site.license} / local-first / edition {site.edition}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

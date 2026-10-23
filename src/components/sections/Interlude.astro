@@ -1,0 +1,30 @@
+---
+import { Picture } from 'astro:assets';
+import { images } from '@/data/images';
+import { site } from '@/data/site';
+---
+
+<figure class="interlude" data-reveal="fade">
+  <div class="poster-bar interlude__bar">
+    <span>Zephyrus / Interlude</span>
+    <span class="poster-bar__center">The hoard</span>
+    <span>Plate 003 / {site.edition}</span>
+  </div>
+  <div class="interlude__frame">
+    <Picture
+      src={images.hoard.src}
+      alt={images.hoard.alt}
+      formats={['avif', 'webp']}
+      widths={[640, 960, 1280, 1536]}
+      sizes="(max-width: 1450px) 96vw, 1400px"
+      loading="lazy"
+      decoding="async"
+      style={`object-position: ${images.hoard.position}`}
+    />
+  </div>
+  <figcaption class="interlude__meta">
+    <span>{images.hoard.caption}</span>
+    <span>CRT / drives / one coiled cable</span>
+    <span>{images.hoard.credit}</span>
+  </figcaption>
+</figure>

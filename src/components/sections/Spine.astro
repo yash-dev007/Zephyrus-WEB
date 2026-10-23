@@ -1,0 +1,30 @@
+---
+import SpineSequence from '@/components/motion/SpineSequence';
+import SectionHeader from '@/components/ui/SectionHeader.astro';
+import { links } from '@/data/site';
+---
+
+<section class="section" id="spine" aria-labelledby="spine-title" data-nav-section="spine">
+  <div class="shell">
+    <SectionHeader
+      index="03"
+      label="The spine"
+      title="One server. Every layer on the table."
+      titleId="spine-title"
+      lead="A no-build SPA talks HTTP and SSE to app.py. Routes stay thin. Logic lives in src/. State lives in data/. The spine holds."
+      meta="POST /api/chat → text/event-stream"
+    />
+  </div>
+
+  <SpineSequence client:visible />
+
+  <div class="shell spine__foot">
+    <p class="annotation">Supporting folders: core / services / integrations / mcp_servers</p>
+    <a class="link-arrow" href={links.repoMap} rel="noopener noreferrer">
+      Repo map{' '}
+      <span class="arrow" aria-hidden="true">
+        ↗
+      </span>
+    </a>
+  </div>
+</section>

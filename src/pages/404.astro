@@ -1,0 +1,53 @@
+---
+import Base from '@/layouts/Base.astro';
+import { links, site } from '@/data/site';
+---
+
+<Base
+  title="404 — Zephyrus"
+  description="The wyrm found nothing at this address."
+  noindex
+  jsonLd={false}
+>
+  <section class="notfound" aria-labelledby="notfound-title">
+    <div class="shell notfound__grid">
+      <div class="poster-bar notfound__bar">
+        <span>Zephyrus / 404</span>
+        <span class="poster-bar__center">The wyrm found nothing</span>
+        <span>Edition {site.edition}</span>
+      </div>
+      <div class="notfound__copy">
+        <p class="notfound__code">404 / The wyrm</p>
+        <h1 class="h1 notfound__title" id="notfound-title">
+          The wyrm found nothing.
+        </h1>
+        <p class="lead section-lede">
+          This address is not in the hoard. It may have moved, or it may never have existed. The
+          machine is still running.
+        </p>
+        <div class="notfound__actions">
+          <a class="btn btn--primary" href="/">
+            Return home
+          </a>
+          <a class="btn" href="/#rite">
+            Install
+          </a>
+          <a class="btn btn--ghost" href={links.issues} rel="noopener noreferrer">
+            Report a broken link{' '}
+            <span class="btn__glyph" aria-hidden="true">
+              ↗
+            </span>
+          </a>
+        </div>
+      </div>
+      <img
+        class="notfound__mark"
+        src="/brand/mark-bone.svg"
+        alt=""
+        width="464"
+        height="512"
+        aria-hidden="true"
+      />
+    </div>
+  </section>
+</Base>

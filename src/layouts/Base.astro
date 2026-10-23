@@ -1,0 +1,127 @@
+---
+import Header from '@/components/layout/Header.astro';
+import Footer from '@/components/layout/Footer.astro';
+import { links, site } from '@/data/site';
+import '@/styles/tokens.css';
+import '@/styles/type.css';
+import '@/styles/base.css';
+import '@/styles/layout.css';
+import '@/styles/motion.css';
+import '@/styles/poster.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  jsonLd?: boolean;
+  bodyClass?: string;
+}
+
+const {
+  title = site.title,
+  description = site.description,
+  image = '/og.png',
+  noindex = false,
+  jsonLd = true,
+  bodyClass = '',
+} = Astro.props;
+
+const siteUrl = Astro.site ?? new URL('https://zephyrus.example');
+const canonical = new URL(Astro.url.pathname, siteUrl);
+const ogImage = new URL(image, siteUrl);
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: site.name,
+  description: site.description,
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Linux, macOS, Windows',
+  url: site.url,
+  softwareVersion: site.version,
+  license: links.license,
+  sameAs: site.repo,
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#0A0A0B" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="format-detection" content="telephone=no" />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content={title === site.title ? site.og.title : title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Zephyrus wordmark and dragon mark on a black field." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title === site.title ? site.og.title : title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
+
+    <link
+      rel="preload"
+      href="/fonts/archivo-var-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/jetbrains-mono-var-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <script is:inline src="/boot.js"></script>
+    {jsonLd && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify(structuredData).replace(/</g, '\\u003c')}
+      />
+    )}
+  </head>
+  <body class={bodyClass}>
+    <a class="skip-link" href="#main">
+      Skip to content
+    </a>
+    <Header />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      import '@/scripts/header';
+      import '@/scripts/smooth-scroll';
+      import '@/scripts/reveal';
+      import '@/scripts/ledger';
+    </script>
+  </body>
+</html>

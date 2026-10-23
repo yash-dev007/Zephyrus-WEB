@@ -1,0 +1,68 @@
+---
+import SectionHeader from '@/components/ui/SectionHeader.astro';
+import { providers } from '@/data/providers';
+import { links } from '@/data/site';
+---
+
+<section class="section" id="kin" aria-labelledby="kin-title" data-nav-section="kin">
+  <div class="shell">
+    <SectionHeader
+      index="05"
+      label="The kin"
+      title="Bring the model you already run."
+      titleId="kin-title"
+      lead="Local engines and hosted APIs share one OpenAI-compatible path. Change the endpoint in Settings; nothing else moves."
+      meta="OpenAI-compatible / one path"
+    />
+
+    <div class="kin__rows">
+      <div class="kin__row">
+        <div class="kin__row-label">
+          <span class="annotation">Local</span>
+          <span class="section-index" aria-hidden="true">
+            06
+          </span>
+        </div>
+        <ul class="providers">
+          {providers.local.map((provider) => (
+            <li class="provider">{provider}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="kin__row">
+        <div class="kin__row-label">
+          <span class="annotation">Hosted</span>
+          <span class="section-index" aria-hidden="true">
+            07
+          </span>
+        </div>
+        <ul class="providers">
+          {providers.hosted.map((provider) => (
+            <li class="provider">{provider}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="kin__cookbook">
+      <div class="kin__cookbook-copy">
+        <p class="body-copy">
+          The cookbook checks hardware fit, downloads weights, and serves them from the same box.
+        </p>
+        <p class="kin__footnote">
+          From Docker, host Ollama is http://host.docker.internal:11434/v1.
+        </p>
+        <a class="link-arrow" href={links.setupConfig} rel="noopener noreferrer">
+          Provider setup{' '}
+          <span class="arrow" aria-hidden="true">
+            ↗
+          </span>
+        </a>
+      </div>
+      <p class="kin__cookbook-note annotation">
+        Local GPU serving wants Linux or WSL2. Provider names are trademarks of their owners.
+      </p>
+    </div>
+  </div>
+</section>
